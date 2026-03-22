@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,7 +9,7 @@ Route::get('/', function () {
 Route::get('about', function () {
     return view('about');
 });
-Route::get('test', [TestController::class,'index'])->name('test');
+Route::get('todos', [TodoController::class,'index'])->name('todos');
 
 Route::get('/newtest', function () {
     return view('welcome');
