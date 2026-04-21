@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{$title}}</title>
+        <title>title</title>
 
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
+            @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/components/ShowUsers.jsx'])
     </head>
 <body class = "bg-gray-600 text-slate-800 min-h-screen relativetext-sm sm:text-base">
          <div class="container-fluid">

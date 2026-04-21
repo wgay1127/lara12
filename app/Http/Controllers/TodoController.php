@@ -19,13 +19,12 @@ class TodoController extends Controller
             $data = json_decode($response->body(), true); // Manually decode JSON response
 
             foreach($data as $item){
-                // Todos::create([
-                //     'user_id' => $item['userId'],
-                //     'title' => $item['title'],
-                //     'details' => '',
-                //     'completed' => $item['completed']
-                // ]);
-                dd($item);
+                Todos::create([
+                    'user_id' => $item['userId'],
+                    'title' => $item['title'],
+                    'details' => '',
+                    'completed' => $item['completed']
+                ]);
             }
         
         $data = $response->json(); // Automatically decodes JSON response
