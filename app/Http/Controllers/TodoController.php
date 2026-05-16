@@ -8,32 +8,37 @@ use App\Http\Requests;
 use App\Models\Todos;
 class TodoController extends Controller
 {
-    public function index(){
-    try {
-        $current = Todos::all();
-        $response = Http::get("https://jsonplaceholder.typicode.com/todos");
-        $data = json_decode($response->body(), true); // Manually decode JSON response
-        $current = $current->toArray(); // Convert Eloquent collection to array
-        
-            dump($current); // Automatically decodes JSON response
-            $data = json_decode($response->body(), true); // Manually decode JSON response
+        public function index(){
+            $todos = Todos::orderBy("created_at","desc")->paginate(10);
+            return inertia('Todos', [
+                'todos' => $todos
+            ]);
+        // try {
+        //     $current = Todos::all();
+        //     $response = Http::get("https://jsonplaceholder.typicode.com/todos");
+        //     $data = json_decode($response->body(), true); // Manually decode JSON response
+        //     $current = $current->toArray(); // Convert Eloquent collection to array
+            
+        //         dump($current); // Automatically decodes JSON response
+        //         $data = json_decode($response->body(), true); // Manually decode JSON response
 
-            foreach($data as $item){
-                Todos::create([
-                    'user_id' => $item['userId'],
-                    'title' => $item['title'],
-                    'details' => '',
-                    'completed' => $item['completed']
-                ]);
-            }
-        
-        $data = $response->json(); // Automatically decodes JSON response
-        //$data = json_decode($response->body(), true); // Manually decode JSON response
-        dd($data);
+        //         foreach($data as $item){
+        //             Todos::create([
+        //                 'user_id' => $item['userId'],
+        //                 'title' => $item['title'],
+        //                 'details' => '',
+        //                 'completed' => $item['completed']
+        //             ]);
+        //         }
+            
+        //     $data = $response->json(); // Automatically decodes JSON response
+        //     //$data = json_decode($response->body(), true); // Manually decode JSON response
+        //     dd($data);
 
-        return response()->json($data);
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'Failed to fetch data'], 500);
+        //     return response()->json($data);
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => 'Failed to fetch data'], 500);
+        // }
     }
+    
 }
-    }

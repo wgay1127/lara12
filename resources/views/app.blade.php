@@ -3,10 +3,9 @@
         <meta charset="utf-8" />
         @viteReactRefresh
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        @vite('resources/js/app.js')
-        <x-inertia::head />
+        @inertiaHead
     </head>
     <body>
-        <x-inertia::app />
+        @inertia
     </body>
 </html>

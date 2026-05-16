@@ -12,9 +12,11 @@ Route::get('/newpage', function () {
     ]);
 })->name('home');
 
-Route::get('/admi', function () {
+Route::get('/admin', function () {
     return inertia('Admin');
 })->name('Admin')->middleware('auth');
+
+Route::resource('todos', TodoController::class)->only(['index']);
 
 Route::get('/', function () {
     return view('welcome');
